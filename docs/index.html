@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SITEGUARD AI - HaloCAS Dashboard</title>
+    <title>HaloCAS - Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <!-- Background Blur matching the screenshot's ambient background -->
     <div class="ambient-background"></div>
 
     <div class="app-container">
         <!-- Top Bar -->
         <header class="topbar">
             <div class="logo">
-                <span class="icon-shield">🛡️</span> SITEGUARD <strong>AI</strong>
+                <span class="icon-shield">🛡️</span> Halo<strong>CAS</strong>
             </div>
             
             <div class="topbar-right">
                 <div class="user-profile">
                     <img src="https://i.pravatar.cc/150?img=11" alt="Supervisor" class="avatar">
                     <div class="user-info">
-                        <span class="role">Supervisor</span>
+                        <span class="role">Safety Officer</span>
                         <span class="name">Alex Mercer ⌄</span>
                     </div>
                 </div>
@@ -32,7 +31,7 @@
                     <span class="icon-calendar">📅</span>
                     <div class="dt-info">
                         <span class="label">Date</span>
-                        <span class="value">Oct 26, 2023, 17:35</span>
+                        <span class="value" id="current-date">Oct 26, 2023, 17:35</span>
                     </div>
                 </div>
 
@@ -50,138 +49,299 @@
             <!-- Left Sidebar -->
             <aside class="sidebar">
                 <nav class="nav-menu">
-                    <a href="#" class="nav-item"><span class="icon">⊞</span> Overview</a>
-                    <a href="#" class="nav-item"><span class="icon">🏢</span> Sites</a>
-                    <a href="#" class="nav-item active"><span class="active-dot"></span>Site 01</a>
-                    <a href="#" class="nav-item"><span class="icon">💼</span> Assets</a>
-                    <a href="#" class="nav-item alerts">
+                    <a href="#" class="nav-item" data-view="overview"><span class="icon">⊞</span> Overview</a>
+                    <a href="#" class="nav-item active" data-view="site01"><span class="active-dot"></span>Site 01</a>
+                    <a href="#" class="nav-item" data-view="assets"><span class="icon">💼</span> Assets</a>
+                    <a href="#" class="nav-item alerts" data-view="alerts">
                         <span class="icon">🔔</span> Alerts
                         <span class="badge">5</span>
                     </a>
-                    <a href="#" class="nav-item"><span class="icon">📄</span> Reports</a>
+                    <a href="#" class="nav-item" data-view="reports"><span class="icon">📄</span> Reports</a>
                 </nav>
             </aside>
 
-            <!-- Center Content -->
-            <main class="center-content">
-                <!-- Large Video Feed Panel -->
-                <div class="panel video-panel">
-                    <div class="panel-header">
-                        <h2>Site 01 - Zone 4</h2>
-                        <span class="dots">...</span>
-                    </div>
-                    
-                    <div class="video-container">
-                        <div class="live-badge"><span class="dot"></span> LIVE</div>
-                        <img src="assets/bg.png" alt="Live Feed" class="video-feed">
-                        
-                        <!-- Red Bounding Box -->
-                        <div class="bounding-box"></div>
+            <!-- Container for all views -->
+            <div class="views-container">
+                
+                <!-- ================== SITE 01 VIEW (DEFAULT) ================== -->
+                <div id="view-site01" class="view-section active">
+                    <main class="center-content">
+                        <!-- Large Video Feed Panel -->
+                        <div class="panel video-panel">
+                            <div class="panel-header">
+                                <h2>Site 01 - Zone 4</h2>
+                                <span class="dots">...</span>
+                            </div>
+                            
+                            <div class="video-container">
+                                <div class="live-badge"><span class="dot"></span> LIVE</div>
+                                <img src="assets/bg.png" alt="Live Feed" class="video-feed">
+                                
+                                <div class="bounding-box"></div>
 
-                        <!-- Proximity Alert Glassmorphism Banner -->
-                        <div class="proximity-alert-overlay">
-                            <div class="alert-content">
-                                <h3>PROXIMITY ALERT ⚠️</h3>
-                                <p class="alert-desc">EXCAVATOR 04 CLOSE TO OPERATOR</p>
-                                <div class="alert-meta">
-                                    <span>17:34:12</span>
-                                    <span>SECTION B</span>
+                                <div class="proximity-alert-overlay">
+                                    <div class="alert-content">
+                                        <h3>PROXIMITY ALERT ⚠️</h3>
+                                        <p class="alert-desc">EXCAVATOR 04 CLOSE TO OPERATOR</p>
+                                        <div class="alert-meta">
+                                            <span>17:34:12</span>
+                                            <span>SECTION B</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="video-controls">
+                                    <span class="icon">👁️</span>
+                                    <span class="icon">⛶</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="video-controls">
-                            <span class="icon">👁️</span>
-                            <span class="icon">⛶</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bottom Activity Chart -->
-                <div class="panel activity-panel">
-                    <div class="panel-header">
-                        <h2>Site Activity</h2>
-                        <span class="dots">...</span>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="siteActivityChart"></canvas>
-                    </div>
-                </div>
-            </main>
-
-            <!-- Right Sidebar -->
-            <aside class="right-panels">
-                <!-- Site Map -->
-                <div class="panel sitemap-panel">
-                    <div class="panel-header">
-                        <h2>Site Map</h2>
-                        <span class="dots">...</span>
-                    </div>
-                    <div class="map-container">
-                        <!-- Radar visual recreated with CSS -->
-                        <div class="radar-map">
-                            <div class="dot blue d1"></div>
-                            <div class="dot blue d2"></div>
-                            <div class="dot gray d3"></div>
-                            <div class="dot gray d4"></div>
-                            <div class="dot gray d5"></div>
-                            <div class="dot blue d6"></div>
-                            <div class="dot gray d7"></div>
-                            
-                            <div class="proximity-zone">
-                                <div class="pulse-ring r1"></div>
-                                <div class="pulse-ring r2"></div>
-                                <div class="core-red-dot"></div>
+                        <!-- Bottom Activity Chart -->
+                        <div class="panel activity-panel">
+                            <div class="panel-header">
+                                <h2>Site Activity</h2>
+                                <span class="dots">...</span>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="siteActivityChart"></canvas>
                             </div>
                         </div>
-                        <div class="map-badge">PROXIMITY ZONE</div>
+                    </main>
+
+                    <aside class="right-panels">
+                        <!-- Site Map -->
+                        <div class="panel sitemap-panel">
+                            <div class="panel-header">
+                                <h2>Site Map</h2>
+                                <span class="dots">...</span>
+                            </div>
+                            <div class="map-container">
+                                <div class="radar-map">
+                                    <div class="dot blue d1"></div>
+                                    <div class="dot blue d2"></div>
+                                    <div class="dot gray d3"></div>
+                                    <div class="dot gray d4"></div>
+                                    <div class="dot gray d5"></div>
+                                    <div class="dot blue d6"></div>
+                                    <div class="dot gray d7"></div>
+                                    
+                                    <div class="proximity-zone">
+                                        <div class="pulse-ring r1"></div>
+                                        <div class="pulse-ring r2"></div>
+                                        <div class="core-red-dot"></div>
+                                    </div>
+                                </div>
+                                <div class="map-badge">PROXIMITY ZONE</div>
+                            </div>
+                        </div>
+
+                        <!-- Equipment Status -->
+                        <div class="panel equipment-panel">
+                            <div class="panel-header">
+                                <h2>Equipment Status</h2>
+                                <span class="dots">...</span>
+                            </div>
+                            <ul class="equipment-list">
+                                <li>
+                                    <span class="eq-name">🚜 Excavator 04</span>
+                                    <span class="tag warn">WARN</span>
+                                </li>
+                                <li>
+                                    <span class="eq-name">🚚 Dumper 09</span>
+                                    <span class="tag ok">OK</span>
+                                </li>
+                                <li>
+                                    <span class="eq-name">🏗️ Crane 02</span>
+                                    <span class="tag ok">OK</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Worker Status -->
+                        <div class="panel worker-panel">
+                            <div class="panel-header">
+                                <h2>Worker Status</h2>
+                                <span class="dots">...</span>
+                            </div>
+                            <div class="stats-row">
+                                <div class="stat">
+                                    <span class="num blue">12</span>
+                                    <span class="lbl">ACTIVE</span>
+                                </div>
+                                <div class="stat-divider"></div>
+                                <div class="stat">
+                                    <span class="num orange">1</span>
+                                    <span class="lbl orange">NEAR ALERT</span>
+                                </div>
+                            </div>
+                            <div class="small-chart-container">
+                                <canvas id="workerStatusChart"></canvas>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+
+                <!-- ================== OVERVIEW VIEW ================== -->
+                <div id="view-overview" class="view-section">
+                    <div class="standard-view">
+                        <h1>Global Overview</h1>
+                        <div class="dashboard-cards">
+                            <div class="card">
+                                <h3>Active Sites</h3>
+                                <div class="huge-number">4</div>
+                                <p>All nodes online</p>
+                            </div>
+                            <div class="card">
+                                <h3>Total Assets Connected</h3>
+                                <div class="huge-number">42</div>
+                                <p>ADK 2.0 Linked</p>
+                            </div>
+                            <div class="card warning">
+                                <h3>Proximity Alerts (Today)</h3>
+                                <div class="huge-number">5</div>
+                                <p>+2 from yesterday</p>
+                            </div>
+                            <div class="card success">
+                                <h3>System Uptime</h3>
+                                <div class="huge-number">99.9%</div>
+                                <p>Last 30 Days</p>
+                            </div>
+                        </div>
+                        <div class="panel large-panel mt-20">
+                            <div class="panel-header">
+                                <h2>Fleet Incident Trends</h2>
+                            </div>
+                            <div class="large-chart-container">
+                                <canvas id="overviewChart"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Equipment Status -->
-                <div class="panel equipment-panel">
-                    <div class="panel-header">
-                        <h2>Equipment Status</h2>
-                        <span class="dots">...</span>
+                <!-- ================== ASSETS VIEW ================== -->
+                <div id="view-assets" class="view-section">
+                    <div class="standard-view">
+                        <div class="header-action">
+                            <h1>Equipment & Asset Registry</h1>
+                            <button class="btn-primary">+ Register Asset</button>
+                        </div>
+                        <div class="panel table-panel">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Type</th>
+                                        <th>Location</th>
+                                        <th>Cameras (F/R)</th>
+                                        <th>ADK Node Status</th>
+                                        <th>Incidents (7d)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>EXC-04</strong></td>
+                                        <td>Excavator</td>
+                                        <td>Site 01 - Zone 4</td>
+                                        <td><span class="tag ok">ONLINE</span></td>
+                                        <td><span class="tag ok">HEALTHY</span></td>
+                                        <td><span class="text-orange">2</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>DMP-09</strong></td>
+                                        <td>Haul Truck</td>
+                                        <td>Site 01 - Zone 2</td>
+                                        <td><span class="tag ok">ONLINE</span></td>
+                                        <td><span class="tag ok">HEALTHY</span></td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>CRN-02</strong></td>
+                                        <td>Crane</td>
+                                        <td>Site 01 - Zone 1</td>
+                                        <td><span class="tag warn">MAINT</span></td>
+                                        <td><span class="tag ok">HEALTHY</span></td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>EXC-12</strong></td>
+                                        <td>Excavator</td>
+                                        <td>Site 02 - Zone 3</td>
+                                        <td><span class="tag ok">ONLINE</span></td>
+                                        <td><span class="tag crit">OFFLINE</span></td>
+                                        <td><span class="text-orange">5</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <ul class="equipment-list">
-                        <li>
-                            <span class="eq-name">🚜 Excavator 04</span>
-                            <span class="tag warn">WARN</span>
-                        </li>
-                        <li>
-                            <span class="eq-name">🚚 Dumper 09</span>
-                            <span class="tag ok">OK</span>
-                        </li>
-                        <li>
-                            <span class="eq-name">🏗️ Crane 02</span>
-                            <span class="tag ok">OK</span>
-                        </li>
-                    </ul>
                 </div>
 
-                <!-- Worker Status -->
-                <div class="panel worker-panel">
-                    <div class="panel-header">
-                        <h2>Worker Status</h2>
-                        <span class="dots">...</span>
-                    </div>
-                    <div class="stats-row">
-                        <div class="stat">
-                            <span class="num blue">12</span>
-                            <span class="lbl">ACTIVE</span>
+                <!-- ================== ALERTS VIEW ================== -->
+                <div id="view-alerts" class="view-section">
+                    <div class="standard-view">
+                        <h1>Incident Inbox</h1>
+                        <div class="alert-list">
+                            <!-- Alert Item -->
+                            <div class="alert-row critical">
+                                <div class="alert-time">17:34:12 <br><small>Today</small></div>
+                                <div class="alert-icon">⚠️</div>
+                                <div class="alert-details">
+                                    <h4>EXCAVATOR 04 CLOSE TO OPERATOR</h4>
+                                    <p>Worker breached 10m threshold at Site 01 - Zone 4. Trajectory analysis triggered automatic engine cutoff warning.</p>
+                                </div>
+                                <div class="alert-actions">
+                                    <button class="btn-review">Review Video</button>
+                                </div>
+                            </div>
+                            <!-- Alert Item -->
+                            <div class="alert-row warning">
+                                <div class="alert-time">14:12:05 <br><small>Today</small></div>
+                                <div class="alert-icon">⚡</div>
+                                <div class="alert-details">
+                                    <h4>UNAUTHORIZED ZONE ENTRY</h4>
+                                    <p>Unidentified personnel detected near Dumper 09. Facial scan negative. Supervisor notified.</p>
+                                </div>
+                                <div class="alert-actions">
+                                    <button class="btn-review">Review Video</button>
+                                </div>
+                            </div>
+                            <!-- Alert Item -->
+                            <div class="alert-row resolved">
+                                <div class="alert-time">09:45:30 <br><small>Today</small></div>
+                                <div class="alert-icon">✅</div>
+                                <div class="alert-details">
+                                    <h4>AUTHORIZED MECHANIC PROXIMITY</h4>
+                                    <p>Proximity detected at Crane 02. Facial scan confirmed authorized mechanic. Logged as safe.</p>
+                                </div>
+                                <div class="alert-actions">
+                                    <span class="status-text">Resolved automatically</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="stat-divider"></div>
-                        <div class="stat">
-                            <span class="num orange">1</span>
-                            <span class="lbl orange">NEAR ALERT</span>
-                        </div>
-                    </div>
-                    <div class="small-chart-container">
-                        <canvas id="workerStatusChart"></canvas>
                     </div>
                 </div>
-            </aside>
+
+                <!-- ================== REPORTS VIEW ================== -->
+                <div id="view-reports" class="view-section">
+                    <div class="standard-view">
+                        <h1>Compliance & Reports</h1>
+                        <div class="reports-grid">
+                            <div class="panel">
+                                <h3>Download Safety Logs</h3>
+                                <p>Export a full CSV of all proximity breaches and system events for regulatory compliance.</p>
+                                <button class="btn-primary mt-10">📥 Download CSV (Last 30 Days)</button>
+                            </div>
+                            <div class="panel">
+                                <h3>Generate PDF Summary</h3>
+                                <p>Executive summary of fleet health, ADK 2.0 uptime, and worker safety metrics.</p>
+                                <button class="btn-primary mt-10">📄 Generate PDF Report</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
