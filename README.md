@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-HaloCAS is an intelligent Collision Avoidance System designed for the manufacturing and mining industries, powered by the ADK 2.0 Graph Workflow framework. This system utilizes robust camera tracking on heavy machinery to calculate proximity and detect unsafe scenarios involving human workers.
+HaloCAS is an intelligent Collision Avoidance System designed for the manufacturing and mining industries. This system utilizes robust camera tracking on heavy machinery to calculate proximity and detect unsafe scenarios involving human workers.
 
 Rather than relying on monolithic AI prompts, HaloCAS employs a deterministic graph-based execution engine. This ensures highly predictable, scalable, and safe responses in critical environments.
 
