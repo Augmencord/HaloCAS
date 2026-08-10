@@ -1,0 +1,16 @@
+{
+  "emp_001": {
+    "name": "John Doe",
+    "department": "Mining Operations",
+    "has_authorized_gear": true,
+    "supervisor_name": "Jane Smith",
+    "supervisor_email": "jane.smith@mock-company.com"
+  },
+  "emp_002": {
+    "name": "Alice Wonderland",
+    "department": "Logistics",
+    "has_authorized_gear": false,
+    "supervisor_name": "Bob Builder",
+    "supervisor_email": "bob.builder@mock-company.com"
+  }
+}

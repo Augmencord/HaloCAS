@@ -1,0 +1,5 @@
+venv/
+alerts/
+blog/
+__pycache__/
+*.pyc
