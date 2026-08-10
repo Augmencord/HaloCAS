@@ -106,7 +106,7 @@ def main():
     p = tf.paragraphs[0]
     p.text = "Check out the open-source code and technical architecture on GitHub:\n\nhttps://github.com/Augmencord/HaloCAS"
     
-    prs.save(r"C:\Users\augme\.gemini\antigravity-ide\scratch\HaloCAS\HaloCAS_Presentation.pptx")
+    prs.save(r"C:\Users\augme\.gemini\antigravity-ide\scratch\HaloCAS\HaloCAS_Presentation_v2.pptx")
     print("Presentation generated successfully!")
 
 if __name__ == '__main__':
