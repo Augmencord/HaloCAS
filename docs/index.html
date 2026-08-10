@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITEGUARD AI - HaloCAS Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Background Blur matching the screenshot's ambient background -->
+    <div class="ambient-background"></div>
+
+    <div class="app-container">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="logo">
+                <span class="icon-shield">🛡️</span> SITEGUARD <strong>AI</strong>
+            </div>
+            
+            <div class="topbar-right">
+                <div class="user-profile">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="Supervisor" class="avatar">
+                    <div class="user-info">
+                        <span class="role">Supervisor</span>
+                        <span class="name">Alex Mercer ⌄</span>
+                    </div>
+                </div>
+                
+                <div class="date-time">
+                    <span class="icon-calendar">📅</span>
+                    <div class="dt-info">
+                        <span class="label">Date</span>
+                        <span class="value">Oct 26, 2023, 17:35</span>
+                    </div>
+                </div>
+
+                <div class="system-status">
+                    <div class="status-info">
+                        <span class="label">Status</span>
+                        <span class="value active">SYSTEM ACTIVE</span>
+                    </div>
+                    <span class="status-dot"></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <!-- Left Sidebar -->
+            <aside class="sidebar">
+                <nav class="nav-menu">
+                    <a href="#" class="nav-item"><span class="icon">⊞</span> Overview</a>
+                    <a href="#" class="nav-item"><span class="icon">🏢</span> Sites</a>
+                    <a href="#" class="nav-item active"><span class="active-dot"></span>Site 01</a>
+                    <a href="#" class="nav-item"><span class="icon">💼</span> Assets</a>
+                    <a href="#" class="nav-item alerts">
+                        <span class="icon">🔔</span> Alerts
+                        <span class="badge">5</span>
+                    </a>
+                    <a href="#" class="nav-item"><span class="icon">📄</span> Reports</a>
+                </nav>
+            </aside>
+
+            <!-- Center Content -->
+            <main class="center-content">
+                <!-- Large Video Feed Panel -->
+                <div class="panel video-panel">
+                    <div class="panel-header">
+                        <h2>Site 01 - Zone 4</h2>
+                        <span class="dots">...</span>
+                    </div>
+                    
+                    <div class="video-container">
+                        <div class="live-badge"><span class="dot"></span> LIVE</div>
+                        <img src="assets/bg.png" alt="Live Feed" class="video-feed">
+                        
+                        <!-- Red Bounding Box -->
+                        <div class="bounding-box"></div>
+
+                        <!-- Proximity Alert Glassmorphism Banner -->
+                        <div class="proximity-alert-overlay">
+                            <div class="alert-content">
+                                <h3>PROXIMITY ALERT ⚠️</h3>
+                                <p class="alert-desc">EXCAVATOR 04 CLOSE TO OPERATOR</p>
+                                <div class="alert-meta">
+                                    <span>17:34:12</span>
+                                    <span>SECTION B</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="video-controls">
+                            <span class="icon">👁️</span>
+                            <span class="icon">⛶</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Activity Chart -->
+                <div class="panel activity-panel">
+                    <div class="panel-header">
+                        <h2>Site Activity</h2>
+                        <span class="dots">...</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="siteActivityChart"></canvas>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Sidebar -->
+            <aside class="right-panels">
+                <!-- Site Map -->
+                <div class="panel sitemap-panel">
+                    <div class="panel-header">
+                        <h2>Site Map</h2>
+                        <span class="dots">...</span>
+                    </div>
+                    <div class="map-container">
+                        <!-- Radar visual recreated with CSS -->
+                        <div class="radar-map">
+                            <div class="dot blue d1"></div>
+                            <div class="dot blue d2"></div>
+                            <div class="dot gray d3"></div>
+                            <div class="dot gray d4"></div>
+                            <div class="dot gray d5"></div>
+                            <div class="dot blue d6"></div>
+                            <div class="dot gray d7"></div>
+                            
+                            <div class="proximity-zone">
+                                <div class="pulse-ring r1"></div>
+                                <div class="pulse-ring r2"></div>
+                                <div class="core-red-dot"></div>
+                            </div>
+                        </div>
+                        <div class="map-badge">PROXIMITY ZONE</div>
+                    </div>
+                </div>
+
+                <!-- Equipment Status -->
+                <div class="panel equipment-panel">
+                    <div class="panel-header">
+                        <h2>Equipment Status</h2>
+                        <span class="dots">...</span>
+                    </div>
+                    <ul class="equipment-list">
+                        <li>
+                            <span class="eq-name">🚜 Excavator 04</span>
+                            <span class="tag warn">WARN</span>
+                        </li>
+                        <li>
+                            <span class="eq-name">🚚 Dumper 09</span>
+                            <span class="tag ok">OK</span>
+                        </li>
+                        <li>
+                            <span class="eq-name">🏗️ Crane 02</span>
+                            <span class="tag ok">OK</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Worker Status -->
+                <div class="panel worker-panel">
+                    <div class="panel-header">
+                        <h2>Worker Status</h2>
+                        <span class="dots">...</span>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <span class="num blue">12</span>
+                            <span class="lbl">ACTIVE</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat">
+                            <span class="num orange">1</span>
+                            <span class="lbl orange">NEAR ALERT</span>
+                        </div>
+                    </div>
+                    <div class="small-chart-container">
+                        <canvas id="workerStatusChart"></canvas>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
