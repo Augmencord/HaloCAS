@@ -20,7 +20,7 @@ The architecture strictly decouples logic blocks into individual nodes mapped ac
 ## Prerequisites
 
 - Python 3.10+
-- A Google Cloud Project ID (if deploying the ADK Workflow online)
+- A Google Cloud Project ID (if deploying the Workflow online)
 - Virtual Environment
 
 ## Installation & Setup

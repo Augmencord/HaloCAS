@@ -1,6 +1,6 @@
 # HaloCAS Technical Architecture
 
-This document maps out the system architecture and the lifecycle of a single camera frame as it traverses the HaloCAS ADK 2.0 graph workflow.
+This document maps out the system architecture and the lifecycle of a single camera frame as it traverses the HaloCAS graph workflow.
 
 ## Component Flowchart
 
@@ -31,6 +31,6 @@ graph TD
 
 ## Directory Structure Breakdown
 
-- **`src/core/workflow.py`**: The main entry point. Defines the ADK 2.0 execution graph and orchestrates how state is passed from node to node.
+- **`src/core/workflow.py`**: The main entry point. Defines the execution graph and orchestrates how state is passed from node to node.
 - **`src/nodes/logic.py`**: Contains the individual Python functions representing the nodes in our flowchart. Each node returns a boolean instructing the graph whether to continue or halt, along with the modified state payload.
 - **`src/data/mock_db.json`**: Acts as a stand-in for a live SQL/NoSQL employee database.
