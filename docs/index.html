@@ -6,185 +6,163 @@
     <title>HaloCAS Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <!-- Background Blur matching the screenshot's ambient background -->
     <div class="ambient-background"></div>
 
     <div class="app-container">
-        <!-- Top Bar -->
-        <header class="topbar">
+        <!-- Sidebar -->
+        <aside class="sidebar">
             <div class="logo">
-                <span class="icon-shield">🛡️</span> Halo<strong>CAS</strong>
+                <div class="logo-icon">H</div>
+                <div class="logo-text">HaloCAS</div>
             </div>
-            
-            <div class="topbar-right">
-                <div class="user-profile">
-                    <img src="assets/profile.jpg" alt="Safety Officer" class="avatar">
-                    <div class="user-info">
-                        <span class="role">Safety Officer</span>
-                        <span class="name">Aditya Sharma ⌄</span>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active"><span class="icon">⊞</span> Dashboard</a>
+                <a href="#" class="nav-item"><span class="icon">⚏</span> Overview</a>
+                <a href="#" class="nav-item"><span class="icon">📍</span> Site 01</a>
+                <a href="#" class="nav-item"><span class="icon">🏗️</span> Assets</a>
+                <a href="#" class="nav-item alerts-nav"><span class="icon">🔔</span> Alerts <span class="badge">4</span></a>
+                <a href="#" class="nav-item"><span class="icon">📄</span> Reports</a>
+                <a href="#" class="nav-item"><span class="icon">⚙️</span> Settings</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Wrapper -->
+        <div class="main-wrapper">
+            <!-- Header -->
+            <header class="topbar">
+                <div class="header-titles">
+                    <h1>HaloCAS | Industrial Safety Dashboard</h1>
+                    <div class="subtitle">SITE 01 - NYC <span class="active-text">(Active)</span></div>
+                </div>
+                <div class="header-controls">
+                    <div class="search-bar">
+                        <span class="icon">🔍</span>
+                        <input type="text" placeholder="Search">
+                    </div>
+                    <div class="chat-icon">💬</div>
+                    <div class="notification-icon">🔔<span class="dot">4</span></div>
+                    <div class="user-profile">
+                        <img src="assets/profile.jpg" alt="Safety Officer" class="avatar">
+                        <div class="user-info">
+                            <span class="name">Aditya Sharma ⌄</span>
+                            <span class="role">(Site Manager)</span>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="date-time">
-                    <span class="icon-calendar">📅</span>
-                    <div class="dt-info">
-                        <span class="label">Date</span>
-                        <span class="value">Oct 26, 2023, 17:35</span>
-                    </div>
-                </div>
+            </header>
 
-                <div class="system-status">
-                    <div class="status-info">
-                        <span class="label">Status</span>
-                        <span class="value active">SYSTEM ACTIVE</span>
-                    </div>
-                    <span class="status-dot"></span>
-                </div>
-            </div>
-        </header>
-
-        <div class="main-layout">
-            <!-- Left Sidebar -->
-            <aside class="sidebar">
-                <nav class="nav-menu">
-                    <a href="#" class="nav-item"><span class="icon">⊞</span> Overview</a>
-                    <a href="#" class="nav-item"><span class="icon">🏢</span> Sites</a>
-                    <a href="#" class="nav-item active"><span class="active-dot"></span>Site 01</a>
-                    <a href="#" class="nav-item"><span class="icon">💼</span> Assets</a>
-                    <a href="#" class="nav-item alerts">
-                        <span class="icon">🔔</span> Alerts
-                        <span class="badge">5</span>
-                    </a>
-                    <a href="#" class="nav-item"><span class="icon">📄</span> Reports</a>
-                </nav>
-            </aside>
-
-            <!-- Center Content -->
-            <main class="center-content">
-                <!-- Large Video Feed Panel -->
-                <div class="panel video-panel">
-                    <div class="panel-header">
-                        <h2>Site 01 - Zone 4</h2>
-                        <span class="dots">...</span>
-                    </div>
-                    
-                    <div class="video-container">
-                        <div class="live-badge"><span class="dot"></span> LIVE</div>
-                        <img src="assets/bg.png" alt="Live Feed" class="video-feed">
-                        
-                        <!-- Red Bounding Box -->
-                        <div class="bounding-box"></div>
-
-                        <!-- Proximity Alert Glassmorphism Banner -->
-                        <div class="proximity-alert-overlay">
-                            <div class="alert-content">
-                                <h3>PROXIMITY ALERT ⚠️</h3>
-                                <p class="alert-desc">EXCAVATOR 04 CLOSE TO OPERATOR</p>
-                                <div class="alert-meta">
-                                    <span>17:34:12</span>
-                                    <span>SECTION B</span>
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Center Video Feed -->
+                <main class="center-content">
+                    <div class="video-panel">
+                        <div class="video-header">
+                            <h2>LIVE FEED: SITE 01 - AREA C</h2>
+                            <div class="video-meta">
+                                <span class="rec-dot">●</span> REC | 14:32:01 | 24 OCT 2023
+                            </div>
+                        </div>
+                        <div class="video-container">
+                            <img src="assets/bg.png" alt="Live Feed" class="video-feed">
+                            
+                            <div class="bounding-box">
+                                <div class="alert-tooltip">
+                                    <h3>PROXIMITY ALERT</h3>
+                                    <p>Worker detected <3m from Excavator</p>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </main>
 
-                        <div class="video-controls">
-                            <span class="icon">👁️</span>
-                            <span class="icon">⛶</span>
+                <!-- Right Panels -->
+                <aside class="right-panels">
+                    <!-- Equipment Status -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>EQUIPMENT STATUS</h3>
+                            <span class="icon">⚙️</span>
                         </div>
+                        <ul class="eq-list">
+                            <li><span class="eq-name">Crane 01</span> <span class="eq-status status-green">ACTIVE (OK)</span></li>
+                            <li><span class="eq-name">Excavator 03</span> <span class="eq-status status-red">ACTIVE (ALERT)</span></li>
+                            <li><span class="eq-name">Loader 02</span> <span class="eq-status status-blue">IDLE</span></li>
+                            <li><span class="eq-name">Dozers</span> <span class="eq-status status-yellow">STANDBY</span></li>
+                        </ul>
                     </div>
-                </div>
 
-                <!-- Bottom Activity Chart -->
-                <div class="panel activity-panel">
-                    <div class="panel-header">
-                        <h2>Site Activity</h2>
-                        <span class="dots">...</span>
+                    <!-- Alert Feed -->
+                    <div class="panel alert-panel">
+                        <div class="panel-header">
+                            <h3>ALERT FEED</h3>
+                            <span class="dots">...</span>
+                        </div>
+                        <div class="sub-header">Critical Alerts</div>
+                        <ul class="alert-list">
+                            <li>
+                                <div class="time">14:31:55</div>
+                                <div class="alert-desc">
+                                    <div class="title">- Site 01: Proximity Alert</div>
+                                    <div class="subtitle">(Worker near Excavator)</div>
+                                    <div class="status-flash">Flashing Red</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="time">14:31:55</div>
+                                <div class="alert-desc">
+                                    <div class="title">- Site 01: Proximity Alert</div>
+                                    <div class="subtitle">(Worker near Excavator)</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="time">14:31:55</div>
+                                <div class="alert-desc">
+                                    <div class="title">- Site 01: Proximity Alert</div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="chart-container">
-                        <canvas id="siteActivityChart"></canvas>
-                    </div>
-                </div>
-            </main>
 
-            <!-- Right Sidebar -->
-            <aside class="right-panels">
-                <!-- Site Map -->
-                <div class="panel sitemap-panel">
-                    <div class="panel-header">
-                        <h2>Site Map</h2>
-                        <span class="dots">...</span>
-                    </div>
-                    <div class="map-container">
-                        <!-- Radar visual recreated with CSS -->
-                        <div class="radar-map">
-                            <div class="dot blue d1"></div>
-                            <div class="dot blue d2"></div>
-                            <div class="dot gray d3"></div>
-                            <div class="dot gray d4"></div>
-                            <div class="dot gray d5"></div>
-                            <div class="dot blue d6"></div>
-                            <div class="dot gray d7"></div>
-                            
-                            <div class="proximity-zone">
-                                <div class="pulse-ring r1"></div>
-                                <div class="pulse-ring r2"></div>
-                                <div class="core-red-dot"></div>
+                    <!-- Radar Map -->
+                    <div class="panel radar-panel">
+                        <div class="panel-header">
+                            <h3>RADAR MAP</h3>
+                            <div class="header-actions">
+                                <span class="badge-alert">ALERT</span>
+                                <span class="dots">...</span>
                             </div>
                         </div>
-                        <div class="map-badge">PROXIMITY ZONE</div>
-                    </div>
-                </div>
-
-                <!-- Equipment Status -->
-                <div class="panel equipment-panel">
-                    <div class="panel-header">
-                        <h2>Equipment Status</h2>
-                        <span class="dots">...</span>
-                    </div>
-                    <ul class="equipment-list">
-                        <li>
-                            <span class="eq-name">🚜 Excavator 04</span>
-                            <span class="tag warn">WARN</span>
-                        </li>
-                        <li>
-                            <span class="eq-name">🚚 Dumper 09</span>
-                            <span class="tag ok">OK</span>
-                        </li>
-                        <li>
-                            <span class="eq-name">🏗️ Crane 02</span>
-                            <span class="tag ok">OK</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Worker Status -->
-                <div class="panel worker-panel">
-                    <div class="panel-header">
-                        <h2>Worker Status</h2>
-                        <span class="dots">...</span>
-                    </div>
-                    <div class="stats-row">
-                        <div class="stat">
-                            <span class="num blue">12</span>
-                            <span class="lbl">ACTIVE</span>
-                        </div>
-                        <div class="stat-divider"></div>
-                        <div class="stat">
-                            <span class="num orange">1</span>
-                            <span class="lbl orange">NEAR ALERT</span>
+                        <div class="radar-container">
+                            <div class="radar-grid">
+                                <!-- Grid Lines -->
+                                <div class="grid-overlay"></div>
+                                
+                                <!-- Dots representing positions -->
+                                <div class="dot white" style="top: 20%; left: 30%;"></div>
+                                <div class="dot white" style="top: 40%; left: 15%;"></div>
+                                <div class="dot white" style="top: 60%; left: 20%;"></div>
+                                <div class="dot white" style="top: 70%; left: 40%;"></div>
+                                
+                                <div class="dot yellow" style="top: 35%; left: 70%;">🏗️</div>
+                                <div class="dot yellow" style="top: 85%; left: 35%;">🚜</div>
+                                <div class="dot yellow" style="top: 85%; left: 65%;">👷</div>
+                                
+                                <div class="radar-center-text">Site 01</div>
+                                
+                                <div class="radar-alert-zone" style="top: 55%; left: 75%;">
+                                    <div class="pulse p1"></div>
+                                    <div class="pulse p2"></div>
+                                    <div class="icon-warning">⚠️</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="small-chart-container">
-                        <canvas id="workerStatusChart"></canvas>
-                    </div>
-                </div>
-            </aside>
+                </aside>
+            </div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

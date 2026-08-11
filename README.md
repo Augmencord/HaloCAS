@@ -4,7 +4,7 @@
 
 HaloCAS is an intelligent Collision Avoidance System designed for the manufacturing and mining industries. This system utilizes robust camera tracking on heavy machinery to calculate proximity and detect unsafe scenarios involving human workers.
 
-Rather than relying on monolithic AI prompts, HaloCAS employs a deterministic graph-based execution engine. This ensures highly predictable, scalable, and safe responses in critical environments.
+Rather than relying on monolithic AI prompts, HaloCAS employs a deterministic execution engine. This ensures highly predictable, scalable, and safe responses in critical environments.
 
 ### Key Capabilities
 
@@ -15,7 +15,7 @@ Rather than relying on monolithic AI prompts, HaloCAS employs a deterministic gr
 
 ## Architecture Highlights
 
-The architecture strictly decouples logic blocks into individual nodes mapped across an execution graph. For a detailed breakdown of the components, see `docs/architecture.md`.
+The architecture strictly decouples logic blocks into individual nodes mapped across a structured execution path. For a detailed breakdown of the components, see `docs/architecture.md`.
 
 ## Prerequisites
 

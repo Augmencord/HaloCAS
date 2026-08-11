@@ -3,3 +3,5 @@ alerts/
 blog/
 __pycache__/
 *.pyc
+*.pptx
+make_ppt.py
